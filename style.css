@@ -1,0 +1,188 @@
+/* --- Typography & Resets --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    /* Light Theme (White Marble) Variables */
+    --text-primary: #1a1a1a;
+    --text-secondary: #4a4a4a;
+    --glass-bg: rgba(255, 255, 255, 0.45);
+    --glass-border: rgba(212, 175, 55, 0.4);
+    --gold: #D4AF37;
+    --gold-hover: #b5952f;
+    --marble-base: radial-gradient(circle at 50% 50%, #ffffff 0%, #f4f4f4 100%);
+    --marble-veins:
+        linear-gradient(135deg, transparent 48%, rgba(212, 175, 55, 0.25) 49%, rgba(212, 175, 55, 0.7) 50%, rgba(212, 175, 55, 0.25) 51%, transparent 52%),
+        linear-gradient(45deg, transparent 20%, rgba(212, 175, 55, 0.15) 21%, rgba(212, 175, 55, 0.5) 22%, transparent 23%),
+        linear-gradient(75deg, transparent 70%, rgba(0, 0, 0, 0.03) 71%, rgba(0, 0, 0, 0.05) 72%, transparent 73%);
+}
+
+[data-theme="dark"] {
+    /* Dark Theme (Black Marble) Variables */
+    --text-primary: #fdfdfd;
+    --text-secondary: #cccccc;
+    --glass-bg: rgba(15, 15, 15, 0.6);
+    --glass-border: rgba(212, 175, 55, 0.3);
+    --marble-base: radial-gradient(circle at 30% 70%, #1a1a1a 0%, #050505 100%);
+    --marble-veins:
+        linear-gradient(135deg, transparent 48%, rgba(212, 175, 55, 0.15) 49%, rgba(212, 175, 55, 0.6) 50%, rgba(212, 175, 55, 0.15) 51%, transparent 52%),
+        linear-gradient(70deg, transparent 80%, rgba(212, 175, 55, 0.1) 81%, rgba(212, 175, 55, 0.4) 82%, transparent 83%),
+        linear-gradient(10deg, transparent 30%, rgba(255, 255, 255, 0.02) 31%, rgba(255, 255, 255, 0.04) 32%, transparent 33%);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-primary);
+    background: var(--marble-veins), var(--marble-base);
+    background-size: 300% 300%;
+    animation: floatMarble 40s ease-in-out infinite;
+    min-height: 100vh;
+    transition: color 0.5s ease;
+}
+
+h1, h2, h3, .logo {
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+a { text-decoration: none; color: inherit; transition: color 0.3s; }
+.gold-text { color: var(--gold); }
+.gold-text:hover { color: var(--gold-hover); }
+
+/* --- Animations --- */
+@keyframes floatMarble {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- Glassmorphism Elements --- */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    transition: background 0.5s ease, border 0.5s ease;
+}
+
+/* --- Layout --- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 4rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.logo { font-size: 1.5rem; color: var(--gold); }
+.nav-links { display: flex; gap: 2rem; align-items: center; }
+
+.hero {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 2rem;
+}
+.hero-content {
+    max-width: 800px;
+    padding: 4rem;
+    border-radius: 4px;
+}
+.hero h1 { font-size: 3.5rem; margin-bottom: 1rem; color: var(--gold); }
+.hero p { font-size: 1.2rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 2.5rem; }
+
+.hero-actions { display: flex; gap: 1.5rem; justify-content: center; }
+.btn-solid { background: var(--gold); color: #000; padding: 1rem 2rem; font-family: 'Cinzel', serif; font-weight: 600; transition: transform 0.3s, background 0.3s; }
+.btn-solid:hover { background: var(--gold-hover); transform: translateY(-2px); }
+.btn-outline { border: 1px solid var(--gold); color: var(--gold); padding: 1rem 2rem; font-family: 'Cinzel', serif; transition: background 0.3s, color 0.3s; }
+.btn-outline:hover { background: var(--gold); color: #000; }
+.btn-glass { background: transparent; border: 1px solid var(--glass-border); color: var(--text-primary); padding: 0.5rem 1rem; cursor: pointer; transition: all 0.3s; }
+.btn-glass:hover { background: var(--glass-border); }
+
+/* --- Portfolio Grid --- */
+.portfolio { padding: 6rem 4rem; }
+.section-title { text-align: center; font-size: 2.5rem; margin-bottom: 4rem; color: var(--gold); }
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+}
+
+/* Card Styles & Hover Effects */
+.card {
+    position: relative;
+    border-radius: 2px;
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    cursor: pointer;
+}
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.card:hover .card-img { transform: scale(1.1); }
+
+.card-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0; top: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2rem;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+.card:hover .card-overlay { opacity: 1; }
+.card-overlay h3 { color: var(--gold); font-size: 1.5rem; margin-bottom: 0.5rem; transform: translateY(20px); transition: transform 0.5s ease; }
+.card-overlay p { color: #fff; font-size: 0.95rem; line-height: 1.5; transform: translateY(20px); transition: transform 0.5s ease; opacity: 0.9; }
+.card:hover .card-overlay h3, .card:hover .card-overlay p { transform: translateY(0); }
+
+/* --- Footer --- */
+footer { text-align: center; padding: 4rem 2rem; margin-top: 4rem; }
+footer h2 { color: var(--gold); margin-bottom: 1rem; }
+footer p { color: var(--text-secondary); margin-bottom: 1.5rem; }
+.footer-contacts a { font-weight: 500; margin: 0 1rem; }
+.footer-contacts a:hover { color: var(--gold); }
+
+/* --- Responsive Design --- */
+@media (max-width: 1024px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .hero h1 { font-size: 3rem; }
+}
+@media (max-width: 768px) {
+    .grid { grid-template-columns: 1fr; }
+    nav { flex-direction: column; gap: 1rem; padding: 1rem; }
+    .hero h1 { font-size: 2.2rem; }
+    .hero-content { padding: 2rem; }
+    .portfolio { padding: 4rem 1.5rem; }
+    .hero-actions { flex-direction: column; }
+}
+
+/* Кнопка */
+.btn-glass {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+/* Приховування іконок */
+/* Якщо тема світла (або атрибут порожній) — ховаємо сонце, показуємо місяць */
+html:not([data-theme="dark"]) .icon-sun { display: none; }
+html:not([data-theme="dark"]) .icon-moon { display: block; }
+
+/* Якщо тема темна — показуємо сонце, ховаємо місяць */
+html[data-theme="dark"] .icon-sun { display: block; }
+html[data-theme="dark"] .icon-moon { display: none; }
+
