@@ -186,3 +186,10 @@ html:not([data-theme="dark"]) .icon-moon { display: block; }
 html[data-theme="dark"] .icon-sun { display: block; }
 html[data-theme="dark"] .icon-moon { display: none; }
 
+/* --- About Us Section --- */
+.about-us { padding: 4rem 4rem 0 4rem; display: flex; justify-content: center; }
+.about-container { max-width: 900px; padding: 3rem; border-radius: 4px; text-align: center; }
+.about-text p { margin-bottom: 1.5rem; line-height: 1.8; color: var(--text-secondary); font-size: 1.1rem; }
+.about-text p:last-child { margin-bottom: 0; }
+
+
