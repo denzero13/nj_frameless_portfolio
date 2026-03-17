@@ -9,6 +9,7 @@
     --glass-border: rgba(212, 175, 55, 0.4);
     --gold: #D4AF37;
     --gold-hover: #b5952f;
+    --transition: all 0.3s ease; /* Виправлення: додано оголошення змінної */
     --marble-base: radial-gradient(circle at 50% 50%, #ffffff 0%, #f4f4f4 100%);
     --marble-veins:
         linear-gradient(135deg, transparent 48%, rgba(212, 175, 55, 0.25) 49%, rgba(212, 175, 55, 0.7) 50%, rgba(212, 175, 55, 0.25) 51%, transparent 52%),
@@ -100,8 +101,28 @@ nav {
 .btn-solid:hover { background: var(--gold-hover); transform: translateY(-2px); }
 .btn-outline { border: 1px solid var(--gold); color: var(--gold); padding: 1rem 2rem; font-family: 'Cinzel', serif; transition: background 0.3s, color 0.3s; }
 .btn-outline:hover { background: var(--gold); color: #000; }
-.btn-glass { background: transparent; border: 1px solid var(--glass-border); color: var(--text-primary); padding: 0.5rem 1rem; cursor: pointer; transition: all 0.3s; }
+
+/* Виправлення: об'єднано стилі круглої кнопки та прибрано конфліктуючий padding */
+.btn-glass {
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition);
+}
 .btn-glass:hover { background: var(--glass-border); }
+
+/* --- About Us Section --- */
+.about-us { padding: 4rem 4rem 0 4rem; display: flex; justify-content: center; }
+.about-container { max-width: 900px; padding: 3rem; border-radius: 4px; text-align: center; }
+.about-text p { margin-bottom: 1.5rem; line-height: 1.8; color: var(--text-secondary); font-size: 1.1rem; }
+.about-text p:last-child { margin-bottom: 0; }
 
 /* --- Portfolio Grid --- */
 .portfolio { padding: 6rem 4rem; }
@@ -161,20 +182,10 @@ footer p { color: var(--text-secondary); margin-bottom: 1.5rem; }
     nav { flex-direction: column; gap: 1rem; padding: 1rem; }
     .hero h1 { font-size: 2.2rem; }
     .hero-content { padding: 2rem; }
-    .portfolio { padding: 4rem 1.5rem; }
+    /* Виправлення: додано .about-us та .about-container для правильного відображення на телефонах */
+    .about-us, .portfolio { padding: 4rem 1.5rem; }
+    .about-container { padding: 2rem; }
     .hero-actions { flex-direction: column; }
-}
-
-/* Кнопка */
-.btn-glass {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: var(--transition);
 }
 
 /* Приховування іконок */
@@ -185,11 +196,3 @@ html:not([data-theme="dark"]) .icon-moon { display: block; }
 /* Якщо тема темна — показуємо сонце, ховаємо місяць */
 html[data-theme="dark"] .icon-sun { display: block; }
 html[data-theme="dark"] .icon-moon { display: none; }
-
-/* --- About Us Section --- */
-.about-us { padding: 4rem 4rem 0 4rem; display: flex; justify-content: center; }
-.about-container { max-width: 900px; padding: 3rem; border-radius: 4px; text-align: center; }
-.about-text p { margin-bottom: 1.5rem; line-height: 1.8; color: var(--text-secondary); font-size: 1.1rem; }
-.about-text p:last-child { margin-bottom: 0; }
-
-
